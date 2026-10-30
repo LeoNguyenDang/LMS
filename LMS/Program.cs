@@ -1,21 +1,57 @@
+using LMS.Data;
+using LMS.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+
+var connectionString = builder.Configuration
+    .GetConnectionString("DefaultConnection")
+    ?? throw new InvalidOperationException(
+        "Không tìm thấy connection string 'DefaultConnection'.");
+
+builder.Services.AddDbContext<LmsDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+builder.Services
+    .AddIdentity<LmsUser, IdentityRole>()
+    .AddEntityFrameworkStores<LmsDbContext>()
+    .AddDefaultTokenProviders();
+
+
+
+builder.Services.AddControllersWithViews(); // Add services to the container.
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider
+        .GetRequiredService<RoleManager<IdentityRole>>();
+
+    var userManager = scope.ServiceProvider
+        .GetRequiredService<UserManager<LmsUser>>();
+
+    await LmsIdentitySeeder.SeedAsync(
+        roleManager,
+        userManager);
+}
+
+
+
+if (!app.Environment.IsDevelopment()) // Configure the HTTP request pipeline.
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+// The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+
 
 app.UseHttpsRedirection();
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();
