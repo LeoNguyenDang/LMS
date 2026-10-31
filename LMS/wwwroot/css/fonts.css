@@ -38,10 +38,10 @@
     font-display: swap;
 }
 
-/* Heavy */
+/* Stripes Heavy */
 @font-face {
-    font-family: "KFC Serif";
-    src: url("../fonts/VN_KentuckyFriedSerif-Heavy.ttf") format("truetype");
+    font-family: "KFC Stripes";
+    src: url("../fonts/VN_KentuckyFriedStripes-Heavy.ttf") format("truetype");
     font-weight: 900;
     font-style: normal;
     font-display: swap;
