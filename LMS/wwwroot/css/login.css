@@ -7,8 +7,8 @@
     --brand-white: #FFFFFF;
     --brand-black: #000000;
     /* Thay khi có file font Kentucky Fried Serif chính thức */
-    --brand-font: Georgia, "Times New Roman", serif;
-    --ui-font: Arial, "Helvetica Neue", sans-serif;
+    --brand-font: "KFC Serif", Georgia, serif;
+    --ui-font: "KFC Sans", Arial, sans-serif;
     --text-color: #171717;
     --muted-color: #6C6C6C;
     --border-color: #D6D6D6;

@@ -1,0 +1,80 @@
+﻿/* =========================
+   KFC SERIF
+   ========================= */
+
+/* Regular */
+@font-face {
+    font-family: "KFC Serif";
+    src: url("../fonts/VN_KentuckyFriedSerif-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Italic */
+@font-face {
+    font-family: "KFC Serif";
+    src: url("../fonts/VN_KentuckyFriedSerif-Italic.ttf") format("truetype");
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Light */
+@font-face {
+    font-family: "KFC Serif";
+    src: url("../fonts/VN_KentuckyFriedSerif-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Light Italic */
+@font-face {
+    font-family: "KFC Serif";
+    src: url("../fonts/VN_KentuckyFriedSerif-LightItalic.ttf") format("truetype");
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Heavy */
+@font-face {
+    font-family: "KFC Serif";
+    src: url("../fonts/VN_KentuckyFriedSerif-Heavy.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Heavy Italic */
+@font-face {
+    font-family: "KFC Serif";
+    src: url("../fonts/VN_KentuckyFriedSerif-HeavyItalic.ttf") format("truetype");
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+
+/* =========================
+   KFC SANS
+   ========================= */
+
+/* Regular */
+@font-face {
+    font-family: "KFC Sans";
+    src: url("../fonts/VN_KentuckyFriedSans-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Light */
+@font-face {
+    font-family: "KFC Sans";
+    src: url("../fonts/VN_KentuckyFriedSans-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}

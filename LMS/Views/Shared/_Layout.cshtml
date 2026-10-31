@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var currentController =
+        ViewContext.RouteData.Values["controller"]?.ToString();
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -8,75 +12,150 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/LMS.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/fonts.css"  asp-append-version="true" />
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LMS</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
+ <body class="mb-0">
+        <div class="app-layout">
+<!-- SIDEBAR BÊN TRÁI -->
+            <aside class="app-sidebar" id="app-sidebar">
+<!-- Logo KFC -->
+                <div class="sidebar-brand">
+                    <a asp-controller="Home"
+                       asp-action="Index">
+                        <img src="~/images/kfc-logo.png"
+                             asp-append-version="true"
+                             class="sidebar-logo"
+                             alt="KFC" />
+                    </a>
+                </div>
+<!-- Menu -->
+                <nav class="p-3" aria-label="Điều hướng chính">
+                    <ul class="nav flex-column gap-2">
 
-                    <ul class="navbar-nav">
+                        <!-- Sidebar Khóa học -->
+                        <li class="nav-item">
+                            <a asp-controller="Course"
+                               asp-action="Index"
+                               class="nav-link @(currentController == "Course" ? "active" : "")"
+                               aria-label="Khóa học"
+                               title="Khóa học">
+
+                                <svg class="sidebar-icon"
+                                     viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7"
+                                     aria-hidden="true">
+                                    <path d="M12 5v15" />
+                                    <path d="M12 5C9 3 5 3 2 4v15c3-1 7-1 10 1 3-2 7-2 10-1V4c-3-1-7-1-10 1Z" />
+                                </svg>
+
+                                <span class="sidebar-label">Khóa học</span>
+                            </a>
+                        </li>
+
+                        <!-- Sidebar Tin tức -->
+                        <li class="nav-item">
+                            <a asp-controller="News"
+                               asp-action="Index"
+                               class="nav-link @(currentController == "News" ? "active" : "")"
+                               aria-label="Tin tức"
+                               title="Tin tức">
+
+                                <svg class="sidebar-icon"
+                                     viewBox="0 0 24 24"
+                                     fill="none"
+                                     stroke="currentColor"
+                                     stroke-width="1.7"
+                                     aria-hidden="true">
+                                    <rect x="3" y="3"
+                                          width="18" height="18"
+                                          rx="2" />
+                                    <path d="M7 7h10M7 11h10M7 15h4M7 18h4" />
+                                    <rect x="14" y="15"
+                                          width="3" height="3" />
+                                </svg>
+
+                                <span class="sidebar-label">Tin tức</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </nav>
+<!--End Menu -->
+            </aside>
+
+            <!-- KHU VỰC BÊN PHẢI -->
+            <div class="app-main">
+
+                <!-- TOP BAR -->
+                <header class="app-topbar">
+                    <div class="d-flex align-items-center gap-3">
+                        <button type="button"
+                                id="sidebar-toggle"
+                                class="sidebar-toggle"
+                                aria-controls="app-sidebar"
+                                aria-expanded="true"
+                                aria-label="Thu gọn sidebar"
+                                title="Thu gọn sidebar">
+
+                            <svg viewBox="0 0 24 24"
+                                 fill="none"
+                                 stroke="currentColor"
+                                 stroke-width="1.8"
+                                 aria-hidden="true">
+                                <path d="m14 6-6 6 6 6" />
+                            </svg>
+                        </button>
+
+                        <h1 class="h5 mb-0">
+                            @ViewData["Title"]
+                        </h1>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3">
                         @if (User.Identity?.IsAuthenticated == true)
                         {
-                            <li class="nav-item">
-                                <span class="nav-link text-dark">
-                                    Xin chào, @User.Identity.Name
-                                </span>
-                            </li>
+                            <span>
+                                Xin chào, @User.Identity.Name
+                            </span>
 
-                            <li class="nav-item">
-                                <form asp-controller="Account"
-                                      asp-action="Logout"
-                                      method="post">
-                                    <button type="submit"
-                                            class="nav-link btn btn-link text-dark">
-                                        Đăng xuất
-                                    </button>
-                                </form>
-                            </li>
+                            <form asp-controller="Account"
+                                  asp-action="Logout"
+                                  method="post">
+                                <button type="submit"
+                                        class="btn btn-outline-secondary btn-sm">
+                                    Đăng xuất
+                                </button>
+                            </form>
                         }
                         else
                         {
-                            <li class="nav-item">
-                                <a asp-controller="Account"
-                                   asp-action="Login"
-                                   class="nav-link text-dark">
-                                    Đăng nhập
-                                </a>
-                            </li>
+                            <a asp-controller="Account"
+                               asp-action="Login"
+                               class="btn btn-outline-secondary btn-sm">
+                                Đăng nhập
+                            </a>
                         }
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+                    </div>
+                </header>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - LMS - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                <!-- NỘI DUNG RIÊNG CỦA TỪNG TRANG -->
+                <main class="app-content">
+                    @RenderBody()
+                </main>
+
+            </div>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+
+       <script src="~/js/layout.js"
+        asp-append-version="true"></script>
+
+        @await RenderSectionAsync("Scripts", required: false)
+    </body>
 </html>

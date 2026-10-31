@@ -1,0 +1,192 @@
+﻿:root {
+    --sidebar-width: 260px;
+    --topbar-height: 72px;
+    --kfc-red: #F5002B;
+    --page-background: #F6F6F6;
+    --border-color: #E5E5E5;
+}
+
+/* Khung toàn bộ ứng dụng */
+.app-layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+    min-height: 100vh;
+}
+
+/* Thanh điều hướng bên trái */
+.app-sidebar {
+    background: #FFFFFF;
+    border-right: 1px solid var(--border-color);
+}
+
+/* Cột bên phải: top bar và nội dung */
+.app-main {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    background: var(--page-background);
+}
+
+/* Thanh phía trên */
+.app-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: var(--topbar-height);
+    padding: 16px 32px;
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Nội dung của từng trang */
+.app-content {
+    flex: 1;
+    padding: 32px;
+}
+
+/* Khu vực logo trong sidebar */
+.sidebar-brand {
+    padding: 24px;
+    background: var(--kfc-red);
+    color: #FFFFFF;
+}
+
+.sidebar-logo {
+    display: block;
+    width: 110px;
+    height: 56px;
+    object-fit: contain;
+}
+
+.sidebar-name {
+    margin: 12px 0 0;
+    font-size: 10px;
+    line-height: 1.6;
+    font-weight: 700;
+}
+
+/* Logo nằm giữa sidebar */
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .sidebar-brand > a {
+        display: block;
+        max-width: 100%;
+    }
+
+.sidebar-logo {
+    max-width: 100%;
+    margin-inline: auto;
+}
+
+/* Icon và chữ trong menu */
+.app-sidebar .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 6px;
+    color: var(--kfc-red);
+
+    font-family: "KFC Serif", Georgia, serif;
+    font-weight: 900;
+    font-style: italic;
+}
+
+    .app-sidebar .nav-link:hover,
+    .app-sidebar .nav-link.active {
+        background: var(--kfc-red);
+        color: #FFFFFF;
+    }
+
+.sidebar-icon {
+    flex: none;
+    width: 20px;
+    height: 20px;
+}
+
+/* Nút thu gọn / mở rộng */
+.sidebar-toggle {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background: #FFFFFF;
+    color: #000000;
+    cursor: pointer;
+}
+
+    .sidebar-toggle:hover {
+        background: #F6F6F6;
+    }
+
+    .sidebar-toggle:focus-visible {
+        outline: 2px solid var(--kfc-red);
+        outline-offset: 3px;
+    }
+
+    .sidebar-toggle svg {
+        width: 20px;
+        height: 20px;
+    }
+
+/* Khi thu gọn, cột sidebar còn 88px */
+.app-layout.is-sidebar-collapsed {
+    --sidebar-width: 88px;
+}
+
+.is-sidebar-collapsed .sidebar-brand {
+    padding: 24px 12px;
+}
+
+.is-sidebar-collapsed .sidebar-label {
+    display: none;
+}
+
+.is-sidebar-collapsed .app-sidebar .nav-link {
+    justify-content: center;
+    padding: 12px;
+}
+
+/* Đổi chiều mũi tên khi sidebar thu gọn */
+.is-sidebar-collapsed .sidebar-toggle svg {
+    transform: rotate(180deg);
+}
+
+/* Font mặc định cho các trang dùng layout chung */
+body {
+    font-family: "KFC Sans", Arial, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Các ô nhập và nút dùng font của phần tử chứa chúng */
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+/* Tiêu đề trên top bar và trong nội dung */
+.app-topbar h1,
+.app-content h1,
+.app-content h2,
+.app-content h3 {
+    font-family: "KFC Serif", Georgia, serif;
+    font-weight: 900;
+    font-style: italic;
+}
+
+.app-content p {
+    font-family: "KFC Sans", Arial, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
